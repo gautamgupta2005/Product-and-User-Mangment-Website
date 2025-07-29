@@ -35,6 +35,27 @@ The application uses JSON files (`user.json` and `product.json`) to store user d
 - HTML, CSS, JavaScript (vanilla)
 - File system module (`fs`) for JSON data handling
 
+ ##Folder Structure
+│
+├── app.js (or server.js)          
+├── package.json                        
+├── package-lock.json                   
+│
+├── /src                               
+│   ├── home.html                      
+│   ├── login.html
+│   ├── signup.html                  
+│   ├── table.html                    
+│   ├── user.json                     
+│   └── product.json                 
+│
+├── /public                         
+│   ├── css                        
+│   ├── js                          
+│   └── images                       
+│
+└── README.md       
+
 ## /src Folder Details
 
 The `src` folder contains all the static assets and data files used by the Express server.

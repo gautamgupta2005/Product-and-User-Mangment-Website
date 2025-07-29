@@ -35,7 +35,7 @@ The application uses JSON files (`user.json` and `product.json`) to store user d
 - HTML, CSS, JavaScript (vanilla)
 - File system module (`fs`) for JSON data handling
 
- ##Folder Structure
+ ## Folder Structure
 │
 ├── app.js (or server.js)          
 ├── package.json                        

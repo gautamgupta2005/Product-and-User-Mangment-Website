@@ -39,7 +39,8 @@ The application uses JSON files (`user.json` and `product.json`) to store user d
  
 /project-root
 │
-├── server.js                                  
+├── server.js  
+├── README.md
 │
 ├── /src                       
 │   ├── home.html              

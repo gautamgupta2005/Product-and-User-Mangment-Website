@@ -36,25 +36,20 @@ The application uses JSON files (`user.json` and `product.json`) to store user d
 - File system module (`fs`) for JSON data handling
 
  ## Folder Structure
+ 
+/project-root
 │
-├── app.js (or server.js)          
-├── package.json                        
-├── package-lock.json                   
+├── server.js                   
+├── README.md                
 │
-├── /src                               
-│   ├── home.html                      
+├── /src                       
+│   ├── home.html              
 │   ├── login.html
-│   ├── signup.html                  
-│   ├── table.html                    
-│   ├── user.json                     
-│   └── product.json                 
-│
-├── /public                         
-│   ├── css                        
-│   ├── js                          
-│   └── images                       
-│
-└── README.md       
+│   ├── signup.html             
+│   ├── table.html              
+│   ├── user.json               
+│   └── product.json         
+├── /public        
 
 ## /src Folder Details
 

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+            padding: 36px 32px 28px 32px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #2462b3;
+            letter-spacing: 1px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        input[type="text"] {
+            padding: 12px 10px;
+            border: 1px solid #c0cbda;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color .2s;
+            background: #f9fafc;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #2462b3;
+        }
+        button[type="submit"] {
+            background: #2462b3;
+            color: #fff;
+            padding: 12px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px #bad0f6;
+            cursor: pointer;
+            transition: background .2s;
+            margin-top: 6px;
+        }
+        button[type="submit"]:hover {
+            background: #123a6c;
+        }
+        #table {
+            margin-top: 36px;
+            animation: fadeIn 0.5s;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: #f6faff;
+            box-shadow: 0 1px 8px #e1ecf8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 10px;
+            text-align: center;
+        }
+        th {
+            background: #2462b3;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #eaf1fb;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        img {
+            border-radius: 6px;
+            box-shadow: 0 1px 6px #dde4ea;
+        }
+        a {
+            color: #1976d2;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #0d3d7e;
+        }
+        @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+        @media (max-width:600px) {
+            .container { padding: 18px 8px; }
+            th, td { font-size: 14px; padding: 10px 4px; }
+        }
+    </style>
+</head>
+<body>
+    <form action="/form3" method="POST" id="form3" required>
+        <input type="text" name="name" id="name" placeholder="Name" required>
+        <!-- <input type="number" name="price" id="price" placeholder="Price" required> -->
+        <input type="text" name="image" id="image" placeholder="Image">
+        <button type="submit">Submit</button>
+    </form>
+    <div  id="table" style="display: none;">
+      <table border="1">
+     <thead>
+        <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Image</td>
+        <td>Details</td>
+        </tr>
+     </thead>
+    <tbody id="tbody">
+    </tbody>
+    </table>
+    </div>
+    <script>
+        document.getElementById("form3").addEventListener("submit",function(e){
+            e.preventDefault();
+            document.getElementById("table").style.display="block";
+        const name=document.getElementById("name").value;
+        //  const price=document.getElementById("price").value;
+          const image=document.getElementById("image").value;
+          fetch("/form3",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({name,image})
+          })
+          .then(res=>res.json())
+          .then(result=>{
+            if(result.message==="saved"){
+            const tr=document.createElement("tr");
+          const tbody=document.getElementById("tbody");
+          tr.innerHTML=`
+          <td>${name}</td>
+          <td>$${result.check.price}</td>
+          <td><img src="${image}" width="50px"></td>
+         <td><a href="/details?name=${name}&image=${image}">Details</a></td>
+          `;
+          tbody.appendChild(tr);
+            }
+            else{
+            alert(result.message);
+         }
+          })
+          .catch(err=>{
+            console.log(err);
+          }); 
+           document.getElementById("form3").reset();
+        });
+    </script>
+</body>
+</html>
